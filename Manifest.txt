@@ -1,7 +1,0 @@
-History.txt
-Manifest.txt
-README.txt
-Rakefile
-bin/crenshaw_compiler
-lib/crenshaw_compiler.rb
-test/test_crenshaw_compiler.rb
