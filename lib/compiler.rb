@@ -15,9 +15,7 @@ class Compiler
 
   def init
     @look = @input.read(1)
-    if @look.nil?
-      raise("Look is nil")
-    end
+    raise("Look is nil") unless @look
   end
 
   def term
