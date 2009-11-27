@@ -39,10 +39,20 @@ describe Compiler, "when given input" do
     $stdout.read.should == "mov $1, %eax\n"
   end
 
+  it "should throw up on non-number input" do
+    $stdin << "!"
+    $stdin.rewind
+    lambda { @compiler.compile() }.should raise_error
+  end
+
   it "should output addition instructions" do
     $stdin << "1+2"
     $stdin.rewind
     lambda { @compiler.compile() }.should_not raise_error
+    $stdout.rewind
+    $stdout.read.should == "mov $1, %eax\n"
+    # FAIL
+    $stdout.read.should == ""
   end
 end
 
