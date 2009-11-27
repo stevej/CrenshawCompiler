@@ -10,7 +10,7 @@ class Compiler
 
   def compile()
     init
-    expression
+    term
   end
 
   def init
@@ -20,7 +20,7 @@ class Compiler
     end
   end
 
-  def expression
+  def term
     unless getNum.nil?
       emitLn("mov $" + getNum + ", %eax")
     else
