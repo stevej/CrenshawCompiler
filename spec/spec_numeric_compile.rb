@@ -30,12 +30,12 @@ describe Compiler, "when given input" do
     lambda { @compiler.look.should == "2" }.should_not raise_error
   end
 
-  it "should output something useful for a single number" do
+  it "should output something asm for a single number" do
     $stdin << "1"
     $stdin.rewind
-    lambda { @compiler.compile() }.should_not raise_error
+    lambda { @compiler.compile() }.should raise_error
     $stdout.rewind
-    $stdout.read.should == "mov $1, %eax\n"
+    $stdout.read.should == "mov $1, %eax\nmov %eax, %ebx\n"
   end
 
   it "should throw up on non-number input" do
@@ -49,9 +49,7 @@ describe Compiler, "when given input" do
     $stdin.rewind
     lambda { @compiler.compile() }.should_not raise_error
     $stdout.rewind
-    $stdout.read.should == "mov $1, %eax\n"
-    # FAIL
-    $stdout.read.should == ""
+    $stdout.read.should == "mov $1, %eax\nmov %eax, %ebx\nmov $2, %eax\nadd %ebx, %eax\n"
   end
 end
 
