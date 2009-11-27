@@ -1,7 +1,6 @@
 require 'spec_helper.rb'
 
 
-
 describe Compiler, "when given input" do
   before do
     @orig_stdin = $stdin
