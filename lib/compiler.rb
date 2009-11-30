@@ -58,8 +58,8 @@ class Compiler
 
   def expression
     term
-    emitLn("mov %eax, %ebx")
     while @look && (@look == '+' || @look == '-') do
+      emitLn("mov %eax, %ebx")
       case @look
         when '+' then add
         when '-' then sub
