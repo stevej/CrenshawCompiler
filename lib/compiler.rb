@@ -69,6 +69,7 @@ class Compiler
   def add
     match('+')
     term
+    emitLn('POP %eax')
     emitLn('POP %ebx')
     emitLn('ADD %ebx, %eax')
   end
@@ -76,6 +77,7 @@ class Compiler
   def sub
     match('-')
     term
+    emitLn('POP %eax')
     emitLn('POP %ebx')
     emitLn('SUB %ebx, %eax')
   end

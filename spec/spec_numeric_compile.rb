@@ -49,7 +49,7 @@ describe Compiler, "when given input" do
     $stdin.rewind
     lambda { @compiler.compile() }.should_not raise_error
     $stdout.rewind
-    $stdout.read.should == "PUSH $1\nPUSH $2\nPOP %ebx\nADD %ebx, %eax\n"
+    $stdout.read.should == "PUSH $1\nPUSH $2\nPOP %eax\nPOP %ebx\nADD %ebx, %eax\n"
   end
 end
 
