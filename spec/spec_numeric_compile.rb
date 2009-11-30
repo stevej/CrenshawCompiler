@@ -35,7 +35,7 @@ describe Compiler, "when given input" do
     $stdin.rewind
     lambda { @compiler.compile() }.should_not raise_error
     $stdout.rewind
-    $stdout.read.should == "mov $1, %eax\n"
+    $stdout.read.should == "PUSH $1\n"
   end
 
   it "should throw up on non-number input" do
@@ -49,7 +49,7 @@ describe Compiler, "when given input" do
     $stdin.rewind
     lambda { @compiler.compile() }.should_not raise_error
     $stdout.rewind
-    $stdout.read.should == "mov $1, %eax\nmov %eax, %ebx\nmov $2, %eax\nadd %ebx, %eax\n"
+    $stdout.read.should == "PUSH $1\nPUSH $2\nPOP %ebx\nADD %ebx, %eax\n"
   end
 end
 

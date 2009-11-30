@@ -24,11 +24,10 @@ class Compiler
 
   def term
     unless getNum.nil?
-      emitLn("mov $" + getNum + ", %eax")
+      emitLn("PUSH $" + getNum)
       getChar
     else
       nil
-      #raise('expression broken')
     end
   end
 
@@ -59,7 +58,6 @@ class Compiler
   def expression
     term
     while @look && (@look == '+' || @look == '-') do
-      emitLn("mov %eax, %ebx")
       case @look
         when '+' then add
         when '-' then sub
@@ -71,13 +69,15 @@ class Compiler
   def add
     match('+')
     term
-    emitLn('add %ebx, %eax')
+    emitLn('POP %ebx')
+    emitLn('ADD %ebx, %eax')
   end
 
   def sub
     match('-')
     term
-    emitLn('sub %ebx, %eax')
+    emitLn('POP %ebx')
+    emitLn('SUB %ebx, %eax')
   end
 
 
