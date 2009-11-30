@@ -33,7 +33,7 @@ describe Compiler, "when given input" do
   it "should output something asm for a single number" do
     $stdin << "1"
     $stdin.rewind
-    lambda { @compiler.compile() }.should raise_error
+    lambda { @compiler.compile() }.should_not raise_error
     $stdout.rewind
     $stdout.read.should == "mov $1, %eax\nmov %eax, %ebx\n"
   end
