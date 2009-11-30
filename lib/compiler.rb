@@ -18,6 +18,10 @@ class Compiler
     raise("Look is nil") unless @look
   end
 
+  def getChar
+    @look = @input.read(1)
+  end
+
   def term
     unless getNum.nil?
       emitLn("mov $" + getNum + ", %eax")
@@ -50,10 +54,6 @@ class Compiler
     rv = @look.to_s
     getChar
     rv
-  end
-
-  def getChar
-    @look = @input.read(1)
   end
 
   def expression
